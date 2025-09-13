@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <style>
+       @charset "utf-8";
+*{
+    padding: 0%;
+    margin: 0%;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+
+body,h1,h5 {font-family: "Raleway", sans-serif}
+body, html {height: 100%;
+margin: 0%;
+}
+        nav{
+            width: 100%;
+            background-color: black;
+            height: 70px;
+            line-height: 60px;
+            padding-left: 10px;
+            padding-right: 10px;   
+            display: flex; 
+                
+                
+        }
+        .logo{
+            color: white
+            ;margin: auto;
+        }
+        .center{
+            margin: auto;
+        }
+        input{
+            height: 30px;
+            padding: 3px;
+        }
+        .search{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+       .info{
+        margin-top: 10px !important;
+       }
+    </style>
+</head>
+<body>
+    <nav>
+        <span class="logo">Weather Detector</span>
+      
+    </nav>
+
+      <div align="center">
+        <form class="search" method="post" action="">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Search City"> <input type="submit" value="Search" name="submit">
+
+            {% if data.country_code %}
+        </form><h3>{{city}}</h3>
+
+        <span class="info" style="font-size: larger;">
+            Country Code: {{data.country_code}}</span> <br> <br> 
+
+        <span class="info">coordinate: {{data.coordinate}}</span> <br> <br>
+
+        <span class="info">temperature: {{data.temp}}</span> <br> 
+        <br>
+        <span class="info">pressure: {{data.pressure}}</span> <br> 
+        <br>
+        <span class="info">humidity: {{data.humidity}}</span>
+        {% endif %}
+        </div>
+        
+</body>
+</html>
